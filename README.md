@@ -34,6 +34,9 @@ Hardware Components
 8.  wiring
 
 
+[Rough sketch](https://www.dropbox.com/s/jcw2439meabdbgs/2013-06-24%2009.50.35.jpg)
+
+
 Software Components
 -------------------
 
