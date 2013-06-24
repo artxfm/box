@@ -40,7 +40,9 @@ Hardware Components
 14.  wiring
 
 
-[Rough sketch](https://www.dropbox.com/s/cdnkaj802uwy8il/2013-06-24%2009.50.35.jpg)
+-  [Rough component sketch](https://www.dropbox.com/s/ken41udn5poh1pn/2013-06-24%2011.56.48.jpg)
+
+-  [Rough box sketch](https://www.dropbox.com/s/cdnkaj802uwy8il/2013-06-24%2009.50.35.jpg)
 
 
 Software Components
