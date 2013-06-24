@@ -27,11 +27,17 @@ Hardware Components
 1.  Raspberry Pi
 2.  SD card
 3.  Enclosure
-4.  power supply
-5.  WiFi module
-6.  LED for power
-7.  LED for "awesome activity"
-8.  wiring
+4.  panel mount 3.5mm female stereo jack
+5.  ADC chip (eg, MCP3008)
+6.  panel mount pot (volumn control)
+7.  nice knob for the pot
+8.  small breadboard for adc and mix wiring
+9.  power supply
+10.  WiFi module (~$12)
+11.  LED for power
+12.  LED for "awesome activity"
+13.  misc resistors
+14.  wiring
 
 
 [Rough sketch](https://www.dropbox.com/s/cdnkaj802uwy8il/2013-06-24%2009.50.35.jpg)
@@ -40,7 +46,8 @@ Hardware Components
 Software Components
 -------------------
 
-1.  Linux OS for the pi
+1.  Linux OS for the pi (start with Wheezy, if that fails us
+    switch to ArchLinux).
 2.  Program that runs on the pi and kicks off streaming and adjusts
     volume.
 3.  Program that runs on the pi and manages configuration, periodic
