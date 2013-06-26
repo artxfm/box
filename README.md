@@ -48,16 +48,51 @@ Hardware Components
 Software Components
 -------------------
 
-1.  Linux OS for the pi (start with Wheezy, if that fails us
-    switch to ArchLinux).
-2.  Program that runs on the pi and kicks off streaming and adjusts
-    volume.
-3.  Program that runs on the pi and manages configuration, periodic
-    checkin, and update. When the pi starts up it will connect somwhere
-    to get its configuration.  The only configuration it requires is the
-    URI for the stream.
-4.  Basic web service for managing checkin messages running in the
-    cloud.
-5.  Basic web admin interface for displaying box info and also for
-    turning on/off the awesome LEDs.  Initially, configuration and
-    update will be manual operations.
+### PI OS ###
+
+Linux OS for the pi (start with Wheezy, if that fails us switch to
+ArchLinux).
+
+
+### Custom code to do cool stuff ###
+
+**"manager"** -- The manager is responsible for communicating with the
+cloud mothership.
+* Sends periodic checkin messages.
+* Responds to checkin responses: _reconnect_ to restart the streamer,
+  _update_ to update our code bundle, _led_ to control LED on/off,
+  _mute_ to disable streaming.
+
+**"streamer** -- Just a wrapper (maybe not even that) around tool to
+  stream the audio off our server.
+
+**"voulmed"** -- Program to monitor the volume pot and adjust the audio
+  output level.
+
+**"ledctl"** -- Program that can turn our awesome LED on and off.
+
+
+### Admin/Web Interface ###
+
+Includes a web service for managing checkin messages, and an admin page
+we can use to view status of the boxes and also turn on the awesome
+LEDs.
+
+
+### Messages ###
+
+Here are the messages that flow between the box and the cloud using the
+checkin mechanism controlled by the "manager". These will run over http
+and be json encoded.
+
+```
+BOX -> CLOUD
+  checkin(led=[on|off], id=<BOX_ID>, swversion=<VERSION>)
+
+  response to checkin is an ACK with zero or more possible
+  commands:
+    update(file=<NAME>, md5=<MD5>)
+    reconnect()
+    led(on|off)
+    mute()
+```
