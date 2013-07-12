@@ -226,3 +226,4 @@ Example of adjusting the volume with mpc:
 
 ### Reference for Software ###
 *  http://cagewebdev.com/index.php/raspberry-pi-getting-audio-working/
+*  http://cagewebdev.com/index.php/raspberry-pi-playing-internet-radio/

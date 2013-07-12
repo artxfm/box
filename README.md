@@ -53,6 +53,8 @@ Software Components
 Linux OS for the pi (start with Wheezy, if that fails us switch to
 ArchLinux).
 
+See our [Raspberry Pi Setup Guide](rpi-config.md)
+
 
 ### Custom code to do cool stuff ###
 
@@ -63,7 +65,7 @@ cloud mothership.
   _update_ to update our code bundle, _led_ to control LED on/off,
   _mute_ to disable streaming.
 
-**"streamer** -- Just a wrapper (maybe not even that) around tool to
+**"streamer** -- Just a wrapper (maybe not even that) around mpc/mpd to
   stream the audio off our server.
 
 **"voulmed"** -- Program to monitor the volume pot and adjust the audio
