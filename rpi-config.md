@@ -88,6 +88,18 @@ get a login prompt. The default login is:
 *  **password**: raspberry
 
 
+Initial Configuration
+---------------------
+Important things to do are
+*  Expand the root FS so that you can use your entire SD card.
+*  Set timezone
+
+As soon as you log in try:
+
+    $ raspi-config
+
+
+
 WiFi
 ----------------
 The WiFi module should be recognized by the OS. Check the status:
@@ -158,3 +170,58 @@ At this point your wlan may come up all by itself. If not try restarting it:
 ### WiFi Reference Links ###
 
 *  http://prupert.wordpress.com/2010/06/25/how-to-configure-wireless-wifi-networking-in-ubuntu-via-the-command-line-cli/
+
+
+Software Configuration
+----------------------
+
+First upgrade your pi:
+```bash
+  $ sudo apt-get update
+  $ sudo apt-get upgrade
+```
+
+Then reboot and make sure everything is still working properly:
+
+    $ sudo shutdown -r now
+
+Get audio system working:
+
+```bash
+  $ sudo apt-get install mpg321
+  $ sudo apt-get install lame
+  $ sudo modprobe snd-bcm2835
+  $ sudo amixer cset numuid=2 1
+```
+
+Test your audio.  Plug in to the analog audio out, then:
+
+    $ aplay /usr/share/sounds/alsa/Rear_Center.wav
+
+
+Now configure MPC for streaming
+
+```bash
+  sudo apt-get install mpd mpc
+```
+
+At the end of the install you may get a bind error.  Just ignore it.
+
+Then follow the
+[guide](http://cagewebdev.com/index.php/raspberry-pi-playing-internet-radio/)
+to set the proper permissions, alter the config file, and then reboot
+your pi.
+
+When the pi comes back up try this:
+
+```bash
+$ mpc add http://s7.viastreaming.net:8310/
+$ mpc play
+```
+
+Example of adjusting the volume with mpc:
+    $ mpc volume -10
+
+
+### Reference for Software ###
+*  http://cagewebdev.com/index.php/raspberry-pi-getting-audio-working/
