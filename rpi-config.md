@@ -220,6 +220,7 @@ $ mpc play
 ```
 
 Example of adjusting the volume with mpc:
+
     $ mpc volume -10
 
 
