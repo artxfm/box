@@ -42,7 +42,7 @@ fat finger this you could wipe your computer.
 
 ```bash
   $ sudo dd if=/path/to/wheezy.img of=/dev/diskN bs=1m
-  (wait a long time...)
+  (...wait a long time...)
 ```
 
 When the dd command is done, you can pull out the SD card and insert it
@@ -63,16 +63,15 @@ or if you want to try just using an installer, try this:
 Once you have the extension installed you will have a new tty when you
 plug in the cable. For me the path was:
 
-  /dev/tty.PL2303-00001014
+    /dev/tty.PL2303-00001014
 
 To talk to the pi, first connect the cable correctly (see adafruit
 product description, or [this](http://learn.adafruit.com/downloads/pdf/adafruits-raspberry-pi-lesson-5-using-a-console-cable.pdf).
 
 Then, in a terminal fire up screen like so:
 
-```bash
-  $ screen /dev/tty.PL2303-NNNN 115200
-```
+    $ screen /dev/tty.PL2303-NNNN 115200
+
 
 Screen can be confusing if you haven't used it before. Consult the man
-page. But to exit screen you need to type ^A^\ (that's CTRL-A CTRL-\).
+page. But to exit screen you need to type ^A^\ (that's CTRL-A CTRL-\\).
