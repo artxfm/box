@@ -40,10 +40,10 @@ number**. So if you found the original SD volumne was called
 "/dev/disk1s1", then the path you want is "/dev/disk1".  CAREFUL! If you
 fat finger this you could wipe your computer.
 
-```bash
-  $ sudo dd if=/path/to/wheezy.img of=/dev/diskN bs=1m
-  (...wait a long time...)
-```
+    ```bash
+    $ sudo dd if=/path/to/wheezy.img of=/dev/diskN bs=1m
+    (...wait a long time...)
+    ```
 
 When the dd command is done, you can pull out the SD card and insert it
 into the pi.
@@ -75,3 +75,86 @@ Then, in a terminal fire up screen like so:
 
 Screen can be confusing if you haven't used it before. Consult the man
 page. But to exit screen you need to type ^A^\ (that's CTRL-A CTRL-\\).
+
+
+Log into your Pi
+----------------
+Before connecting to the pi, plug in the WiFi module. Then connect
+(which applys power) and the Pi will boot up.
+
+When you connect to the Pi over the serial cable, you will eventually
+get a login prompt. The default login is:
+*  **username**: pi
+*  **password**: raspberry
+
+
+WiFi
+----------------
+The WiFi module should be recognized by the OS. Check the status:
+*  `iwstatus` Gets the status of the interface
+*  `iwlist scan` Will show various wifi networks about
+
+Now I assume you want to connect to your WPA2 protected network. If you
+want to do something else then search interwebs for how to setup
+wpa_supplicant on ubuntu for your situation.
+
+Create passphrase config block:
+
+     $ wpa_passpharse SSID PASSWORD
+
+That will output something like:
+
+```bash
+  network={
+        ssid="SSID"
+        #psk="PASSWORD"
+        psk=9e7b404c12324288d37f0ad27cfdafa275d1320ae8e700a92541d5d67998e365
+  }
+```
+
+Now you need to create config file for wpa_supplicant.  The config file
+is here:
+
+    /etc/wpa_supplicant/wpa_supplicant.conf
+
+Make yours look something like the example below. In that example, the
+SSID is "frogger":
+
+```bash
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+  ssid="frogger"
+  scan_ssid=1
+  proto=RSN
+  pairwise=CCMP TKIP
+  key_mgmt=WPA-PSK
+  psk=9e7b404c1fc84288d37f0ad2712345a275d1320ae8e700a92541d5d67998e365
+}
+```
+
+Then you should modify your interfaces config file and turn off the hard
+wired internet.
+
+```bash
+  $ sudo vi /etc/network/interfaces
+
+  change:
+    iface eth0 inet dhcp
+  to:
+    # iface eth0 inet dhcp
+
+  Also make sure there is an "auto wlan0" line in there.
+```
+
+At this point your wlan may come up all by itself. If not try restarting it:
+
+```bash
+  $ sudo ifdown wlan0
+  $ sudo ifup wlan0
+```
+
+### WiFi Reference Links ###
+
+*  http://prupert.wordpress.com/2010/06/25/how-to-configure-wireless-wifi-networking-in-ubuntu-via-the-command-line-cli/
