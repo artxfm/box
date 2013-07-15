@@ -65,13 +65,16 @@ cloud mothership.
   _update_ to update our code bundle, _led_ to control LED on/off,
   _mute_ to disable streaming.
 
-**"streamer** -- Just a wrapper (maybe not even that) around mpc/mpd to
-  stream the audio off our server.
+**"streamer** -- We will use mpd which starts automatically on the pi
+  and needs to only be configured once with the appropriate URL.
 
 **"voulmed"** -- Program to monitor the volume pot and adjust the audio
-  output level.
+  output level.  [here](vold/)
 
 **"ledctl"** -- Program that can turn our awesome LED on and off.
+
+Ideally all these components will be available as a ubunto apt package
+so we can use the apt tools to install and upgrade.
 
 
 ### Admin/Web Interface ###
