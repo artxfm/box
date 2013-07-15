@@ -87,6 +87,13 @@ get a login prompt. The default login is:
 *  **username**: pi
 *  **password**: raspberry
 
+Removing power (ie, unplugging the usb cable) will turn the pi off. To
+do that safely you should halt the system first:
+
+    $ sudo /sbin/shutdown -h now
+
+When you see the "Power down" message it is safe to remove power.
+
 
 Initial Configuration
 ---------------------
@@ -167,7 +174,7 @@ At this point your wlan may come up all by itself. If not try restarting it:
   $ sudo ifup wlan0
 ```
 
-### WiFi Reference Links ###
+#### WiFi Reference Links ####
 
 *  http://prupert.wordpress.com/2010/06/25/how-to-configure-wireless-wifi-networking-in-ubuntu-via-the-command-line-cli/
 
@@ -180,6 +187,10 @@ First upgrade your pi:
   $ sudo apt-get update
   $ sudo apt-get upgrade
 ```
+
+Because plain old vi sucks:
+
+    $ sudo apt-get install vim
 
 Then reboot and make sure everything is still working properly:
 
@@ -224,6 +235,23 @@ Example of adjusting the volume with mpc:
     $ mpc volume -10
 
 
-### Reference for Software ###
+#### Reference for Software ####
 *  http://cagewebdev.com/index.php/raspberry-pi-getting-audio-working/
 *  http://cagewebdev.com/index.php/raspberry-pi-playing-internet-radio/
+
+
+### SSH ###
+Generate new host ids:
+
+    $ sudo rm /etc/ssh/ssh_host_*
+    $ sudo dpkg-reconfigure openssh-server
+
+Once ssh is working you don't need serial, but be sure to note the ip
+address.
+
+
+
+Next Steps
+--------------------
+To add a potentiometer so that you can control volume with a knob, see
+[the vold readme](vold/README.md)
