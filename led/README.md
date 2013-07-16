@@ -19,3 +19,9 @@ when we set the pin LOW current will flow.
 Software
 ----------------
 See the [simple python code](led.py)
+
+
+References
+--------------
+*  http://openmicros.org/index.php/articles/94-ciseco-product-documentation/raspberry-pi/217-getting-started-with-raspberry-pi-gpio-and-python
+*  https://projects.drogon.net/raspberry-pi/gpio-examples/tux-crossing/gpio-examples-1-a-single-led/
