@@ -255,3 +255,5 @@ Next Steps
 --------------------
 To add a potentiometer so that you can control volume with a knob, see
 [the vold readme](vold/README.md)
+
+To add the awesome LED, see [the led readme](led/README.md)
