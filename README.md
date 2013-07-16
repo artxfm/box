@@ -69,9 +69,10 @@ cloud mothership.
   and needs to only be configured once with the appropriate URL.
 
 **"voulmed"** -- Program to monitor the volume pot and adjust the audio
-  output level.  [here](vold/)
+  output level.  [See VOLD](vold/)
 
-**"ledctl"** -- Program that can turn our awesome LED on and off.
+**"ledctl"** -- Program that can turn our awesome LED on and
+  off. [See LED](led/)
 
 Ideally all these components will be available as a ubunto apt package
 so we can use the apt tools to install and upgrade.
