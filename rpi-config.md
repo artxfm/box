@@ -153,20 +153,25 @@ network={
 }
 ```
 
-Then you should modify your interfaces config file and turn off the hard
-wired internet.
+Then you should modify your interfaces config file.  
+Edit `/etc/network/interfaces`:
 
 ```bash
-  $ sudo vi /etc/network/interfaces
+auto lo
 
-  change:
-    iface eth0 inet dhcp
-  to:
-    # iface eth0 inet dhcp
+iface lo inet loopback
+# iface eth0 inet dhcp
 
-  Also make sure there is an "auto wlan0" line in there.
+allow-hotplug wlan0
+auto wlan0
+# iface wlan0 inet dhcp
+iface wlan0 inet manual
+wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+
+iface default inet dhcp
 ```
 
+Note that I commented out the eth0 (wired) connection.
 At this point your wlan may come up all by itself. If not try restarting it:
 
 ```bash
@@ -177,6 +182,7 @@ At this point your wlan may come up all by itself. If not try restarting it:
 #### WiFi Reference Links ####
 
 *  http://prupert.wordpress.com/2010/06/25/how-to-configure-wireless-wifi-networking-in-ubuntu-via-the-command-line-cli/
+*  http://www.raspberrypi.org/phpBB3/viewtopic.php?t=6256&p=188783
 
 
 Software Configuration
