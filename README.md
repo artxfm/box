@@ -10,9 +10,8 @@ Features
 1.  Connects to local wifi and streams ARTxFM.
 2.  Connects to local stereo via 3.5mm stereo jack.
 3.  Offers volumn control knob.
-4.  Has "wall-wart" style connection to electrical outlet.
-5.  Has power LED which flashes to indicate internal error.
-6.  Has another LED that lights up when some sort of ARTxFM
+4.  Has connection to electrical outlet.
+6.  Has LED that lights up when some sort of ARTxFM
     special event is going on.
 7.  Periodically checks in with a web service to find out
     if it should update itself or turn on/off its special
@@ -50,32 +49,20 @@ Software Components
 
 ### PI OS ###
 
-Linux OS for the pi (start with Wheezy, if that fails us switch to
-ArchLinux).
-
 See our [Raspberry Pi Setup Guide](rpi-config.md)
 
 
 ### Custom code to do cool stuff ###
 
-**"manager"** -- The manager is responsible for communicating with the
-cloud mothership.
-* Sends periodic checkin messages.
-* Responds to checkin responses: _reconnect_ to restart the streamer,
-  _update_ to update our code bundle, _led_ to control LED on/off,
-  _mute_ to disable streaming.
-
-**"streamer** -- We will use mpd which starts automatically on the pi
-  and needs to only be configured once with the appropriate URL.
+**"checkin** -- Run periodically to report status and turn LED on/off.
+[checkin.py](checkin.py)
 
 **"voulmed"** -- Program to monitor the volume pot and adjust the audio
-  output level.  [See VOLD](vold/)
+  output level.  [See VOLD](README_VOLD.md)
 
 **"ledctl"** -- Program that can turn our awesome LED on and
-  off. [See LED](led/)
+  off. [See LED](README_LED.md)
 
-Ideally all these components will be available as a ubunto apt package
-so we can use the apt tools to install and upgrade.
 
 
 ### Admin/Web Interface ###
@@ -85,20 +72,3 @@ we can use to view status of the boxes and also turn on the awesome
 LEDs.
 
 
-### Messages ###
-
-Here are the messages that flow between the box and the cloud using the
-checkin mechanism controlled by the "manager". These will run over http
-and be json encoded.
-
-```
-BOX -> CLOUD
-  checkin(led=[on|off], id=<BOX_ID>, swversion=<VERSION>)
-
-  response to checkin is an ACK with zero or more possible
-  commands:
-    update(file=<NAME>, md5=<MD5>)
-    reconnect()
-    led(on|off)
-    mute()
-```
