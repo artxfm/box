@@ -95,7 +95,7 @@ else:
 	onoff='off'
         if reply['led'] == 'on':
 		onoff = 'on'
-	subprocess.call(["python", "led.py", onoff])
+	subprocess.call(["python", "led.py", onoff], cwd="/home/pi/box")
 
 
 
