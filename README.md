@@ -44,15 +44,16 @@ Hardware Components
 
 
 
-Software Components
+Get Started!
 -------------------
 
 ### PI OS ###
 
-See our [Raspberry Pi Setup Guide](rpi-config.md)
+Our [Raspberry Pi Setup Guide](rpi-config.md) walks you through setting
+up your pi to attach to a wireless network and start streaming ARTxFM!
 
 
-### Custom code to do cool stuff ###
+### Optional code to do cool stuff ###
 
 **"checkin** -- Run periodically to report status and turn LED on/off.
 [checkin.py](checkin.py)
@@ -66,6 +67,9 @@ See our [Raspberry Pi Setup Guide](rpi-config.md)
 
 
 ### Admin/Web Interface ###
+
+The boxes we are building at ARTxFM are designed to checkin with a
+server.  
 
 See [boxmaster](https://github.com/artxfm/boxmaster)
 
