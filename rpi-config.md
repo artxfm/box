@@ -179,10 +179,23 @@ At this point your wlan may come up all by itself. If not try restarting it:
   $ sudo ifup wlan0
 ```
 
+### Open Wifi Network
+
+If you have an open wifi network, then you can connect by simply doing
+this:
+
+```bash
+  $ sudo iwconfig wlan0 essid NETWORK_ID
+  $ sudo dhclient wlan0
+```
+
+
+
 #### WiFi Reference Links ####
 
 *  http://prupert.wordpress.com/2010/06/25/how-to-configure-wireless-wifi-networking-in-ubuntu-via-the-command-line-cli/
 *  http://www.raspberrypi.org/phpBB3/viewtopic.php?t=6256&p=188783
+*  http://www.raspberrypi.org/phpBB3/viewtopic.php?t=11517
 
 
 Software Configuration
