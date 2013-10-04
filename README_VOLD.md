@@ -35,7 +35,7 @@ Software Bits
 -------------------
 
     $ supo apt-get install python-dev
-    $ sudo apt-get install python setup-tools
+    $ sudo apt-get install python-setuptools
     $ sudo easy_install rpi_gpio
 
 Now install pip.  Here's one way:
@@ -48,6 +48,7 @@ Now install pip.  Here's one way:
 Now you have pip:
 
     $ pip --help
+    $ sudo pip install python-mpd
 
 I had all kinds of trouble resolving hostnames on my rpi. Not sure if
 this is a local DNS issue with the ISP here or what. But I switched my

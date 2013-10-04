@@ -99,7 +99,7 @@ Initial Configuration
 ---------------------
 Important things to do are
 *  Expand the root FS so that you can use your entire SD card.
-*  Set timezone
+*  Set timezone: `sudo dpkg-reconfigure tzdata`
 
 As soon as you log in try:
 
@@ -179,6 +179,9 @@ At this point your wlan may come up all by itself. If not try restarting it:
   $ sudo ifup wlan0
 ```
 
+It will take a few seconds for the wifi to connect.
+
+
 ### Open Wifi Network
 
 If you have an open wifi network, then you can connect by simply doing
@@ -207,7 +210,7 @@ First upgrade your pi:
   $ sudo apt-get upgrade
 ```
 
-Because plain old vi sucks:
+Because plain old vi can be improved:
 
     $ sudo apt-get install vim
 
@@ -221,7 +224,7 @@ Get audio system working:
   $ sudo apt-get install mpg321
   $ sudo apt-get install lame
   $ sudo modprobe snd-bcm2835
-  $ sudo amixer cset numuid=2 1
+  $ sudo amixer cset numid=3 1
 ```
 
 Test your audio.  Plug in to the analog audio out, then:
@@ -253,6 +256,13 @@ Example of adjusting the volume with mpc:
 
     $ mpc volume -10
 
+To set the box up to start streaming at boot, edit /etc/init.d/mpc and
+add a line to the "start" function that kicks off the mpc.  The line
+to add is:
+
+    /usr/bin/mpc play
+
+
 
 #### Reference for Software ####
 *  http://cagewebdev.com/index.php/raspberry-pi-getting-audio-working/
@@ -267,6 +277,13 @@ Generate new host ids:
 
 Once ssh is working you don't need serial, but be sure to note the ip
 address.
+
+
+### Python Extras ###
+
+You will want this if you want to install the boxmaster checkin tool.
+
+   $ sudo apt-get install python-dev python-setuptools
 
 
 
