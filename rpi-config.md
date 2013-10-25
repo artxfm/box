@@ -312,6 +312,8 @@ You will want this if you want to install the boxmaster checkin tool.
 
 ```bash
 $ sudo apt-get install python-dev python-setuptools
+$ sudo easy_install pip
+$ sudo pip install python-mpd
 ```
 
 
