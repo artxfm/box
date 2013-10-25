@@ -20,6 +20,16 @@ Things You'll Need
 Install OS
 ----------
 
+### Raspbian vs Noobs ###
+
+This guide assumes you are installing the Raspbain "wheezy" image. There
+is a new NOOBS image that claims to offer a relatively painless install.
+Feel free to use that, then com back here once you have the system
+running and fill in the bits you need.  Note that NOOBs install requires
+that you hook the pi up to a monitor.
+
+### Installing WHEEZY ###
+
 You can find all the information you need in
 [this guide](http://elinux.org/RPi_Easy_SD_Card_Setup).
 
@@ -31,22 +41,31 @@ this:
 
 2. Insert the SD into the mac, fire up Disk Utility and choose **Verify
 Disk** on the SD mount. Note the path (eg, "/dev/disk1s1" or similar).
-Then **unmount** the SD volume.
+Then **unmount** the SD volume.  Alternatively, you can use command
+line, `diskutil list`, then to unmount: `diskutil unmountDisk
+/dev/disk3`
 
 3. Now you need to write the image onto the SD card. You'll need to
 unzip the wheezy image you downloaded, then use the dd command. Note
 that the output file is the name of the disk **minus the partition
 number**. So if you found the original SD volumne was called
-"/dev/disk1s1", then the path you want is "/dev/disk1".  CAREFUL! If you
+"/dev/diskr3s1", then the path you want is "/dev/rdisk3".  CAREFUL! If you
 fat finger this you could wipe your computer.
 
-    ```bash
-    $ sudo dd if=/path/to/wheezy.img of=/dev/diskN bs=1m
-    (...wait a long time...)
-    ```
+Let's assume you are using /dev/disk3, then:
 
-When the dd command is done, you can pull out the SD card and insert it
-into the pi.
+```bash
+$ sudo dd if=/path/to/wheezy.img of=/dev/rdisk3 bs=1m
+(...wait a bit...)
+```
+
+When the dd command is done, you can should eject the disk:
+
+```bash
+$ diskutil eject /dev/disk3
+```
+
+Pull out the SD card and insert it into the pi.
 
 
 Serial Communication
@@ -104,6 +123,23 @@ Important things to do are
 As soon as you log in try:
 
     $ raspi-config
+
+
+Security
+---------------
+The pi will have ssh enabled by default. Good idea to create a new
+account and set things up so that only that account can ssh in.
+
+1. Create account with `sudo adduser <NAME>`
+2. Add account name to sudo group (edit /etc/group)
+3. Edit `/etc/ssh/sshd_config`, add the line `AllowUsers NAME` to the
+   end.
+
+Also you should generate new hostkeys:
+
+```bash
+  $ sudo rm /etc/ssh/ssh_host_* && sudo dpkg-reconfigure openssh-server
+```
 
 
 
@@ -269,27 +305,20 @@ to add is:
 *  http://cagewebdev.com/index.php/raspberry-pi-playing-internet-radio/
 
 
-### SSH ###
-Generate new host ids:
-
-    $ sudo rm /etc/ssh/ssh_host_*
-    $ sudo dpkg-reconfigure openssh-server
-
-Once ssh is working you don't need serial, but be sure to note the ip
-address.
-
 
 ### Python Extras ###
 
 You will want this if you want to install the boxmaster checkin tool.
 
-   $ sudo apt-get install python-dev python-setuptools
+```bash
+$ sudo apt-get install python-dev python-setuptools
+```
 
 
 
 Next Steps
 --------------------
-To add a potentiometer so that you can control volume with a knob, see
-[the vold readme](vold/README.md)
+*  To add a potentiometer so that you can control volume with a knob, see
+   [the vold readme](vold/README.md)
+*  To add the awesome LED, see [the led readme](led/README.md)
 
-To add the awesome LED, see [the led readme](led/README.md)
