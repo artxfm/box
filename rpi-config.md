@@ -296,6 +296,8 @@ To set the box to start up streaming at boot, add the `artxfm` file
 to `/etc/network/if-up.d/`.  This just runs `mpc play` when the 
 network interface comes up.
 
+Be sure to `chmod a+x` that file.
+
 
 
 #### Reference for Software ####
