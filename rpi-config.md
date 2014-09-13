@@ -292,11 +292,9 @@ Example of adjusting the volume with mpc:
 
     $ mpc volume -10
 
-To set the box up to start streaming at boot, edit /etc/init.d/mpc and
-add a line to the "start" function that kicks off the mpc.  The line
-to add is:
-
-    /usr/bin/mpc play
+To set the box to start up streaming at boot, add the `artxfm` file
+to `/etc/network/if-up.d/`.  This just runs `mpc play` when the 
+network interface comes up.
 
 
 
